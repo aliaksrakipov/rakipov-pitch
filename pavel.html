@@ -368,6 +368,9 @@ dialog.player video { width: 100%; max-height: 88vh; display: block; background:
 /* hero — реальное фото: своё затемнение уже в кадре, CSS-градиент мягче */
 .hero-frame img { filter: none !important; object-position: 66% 40% !important; }
 .hero-frame::after { background: linear-gradient(90deg, rgba(8,8,10,.55) 0%, rgba(8,8,10,.15) 40%, rgba(8,8,10,0) 60%) !important; }
+/* ── клиентская версия короче: без питча, «Ещё умеем», каруселей и второго ряда девелоперов ── */
+.v-client .c-hide { display: none !important; }
+.v-client #dev .works.is-3 .work:nth-child(n+4) { display: none !important; }
 </style>
 </head>
 <body class="v-pavel">
@@ -465,8 +468,8 @@ dialog.player video { width: 100%; max-height: 88vh; display: block; background:
       <a class="reel" href="#" data-video="https://aliaksrakipov.github.io/rakipov-pitch-media/v/ink_r9.mp4" data-v="1"><div class="reel-frame"><img src="media/ink_r9.jpg" alt="Голос клиента КСК" loading="lazy"><span class="reel-play">0:32</span></div><div class="reel-t">Голос клиента · КСК</div><div class="reel-s">аудиограмма отзыва</div></a>
     </div>
 
-    <div class="strip-h"><span><b>Карусели</b> · 6 постов · 36 слайдов</span><span>обложки</span></div>
-    <div class="slides">
+    <div class="strip-h c-hide"><span><b>Карусели</b> · 6 постов · 36 слайдов</span><span>обложки</span></div>
+    <div class="slides c-hide">
       <img src="media/car_03.jpg" alt="" loading="lazy">
       <img src="media/car_06.jpg" alt="" loading="lazy">
       <img src="media/car_05.jpg" alt="" loading="lazy">
@@ -535,7 +538,7 @@ dialog.player video { width: 100%; max-height: 88vh; display: block; background:
     </div>
   </section>
 
-  <section class="sec" id="pitch">
+  <section class="sec c-hide" id="pitch">
     <div class="sec-head"><span class="sec-k">TC 04:00</span><h2 class="sec-t">Питч, выставка, кейс</h2></div>
     <div class="works">
       <a class="work" href="#" data-video="https://aliaksrakipov.github.io/rakipov-pitch-media/v/pitch_arsight.mp4"><div class="work-frame"><img src="media/p_pitch_arsight.jpg" alt="ARsightWay" loading="lazy"><span class="reel-play">1:38</span></div><div class="work-meta"><span class="work-t">ARsightWay</span><span class="work-d">RU + EN · 2026</span></div><div class="work-s">AR-навигация · ролик для инвестора и стенда, версия с титрами — для показа без звука</div></a>
@@ -543,7 +546,7 @@ dialog.player video { width: 100%; max-height: 88vh; display: block; background:
     </div>
   </section>
 
-  <section class="sec case" id="more">
+  <section class="sec case c-hide" id="more">
     <div class="sec-head"><span class="sec-k">TC 04:30</span><h2 class="sec-t">Ещё умеем</h2></div>
     <div class="works is-4">
       <div class="work"><div class="work-frame"><img src="media/p_more_ooh.jpg" alt="" loading="lazy"></div><div class="work-meta"><span class="work-t">Наружка 6×3</span></div><div class="work-s">Зелёная Гавань · печатный мастер 21 600 px</div></div>
@@ -562,7 +565,7 @@ dialog.player video { width: 100%; max-height: 88vh; display: block; background:
       <div class="step"><div class="step-n">04</div><div class="step-t">Правки</div><div class="step-d">Собираем пачкой и вносим в рамках утверждённой концепции. Финал — в нужных форматах: ТВ, вертикали, веб.</div></div>
     </div>
     <div class="who">
-      <img src="media/alex_real.jpg" alt="Alexander Rakipov" loading="lazy">
+      <img src="media/alex_suit.jpg" alt="Alexander Rakipov" loading="lazy">
       <div>
         <p class="who-t">Вы общаетесь <em>с одним человеком</em>. Я режиссирую, за мной команда на продакшне.</p>
         <p class="who-d">В монтаже с 2016 года, в AI-продакшне с 2022-го. 100+ роликов за год в студии Neuro Design. Живая съёмка — в Минске; в других городах работаем с вашим материалом (Zoom, телефон) или заменяем съёмку AI.</p>
