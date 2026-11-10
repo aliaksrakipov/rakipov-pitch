@@ -352,6 +352,22 @@ dialog.player video { width: 100%; max-height: 88vh; display: block; background:
 .lead-t { font-size: clamp(22px, 2.5vw, 34px); font-weight: 700; line-height: 1.12; }
 .who-t { font-size: clamp(19px, 2vw, 27px); font-weight: 500; line-height: 1.38; }
 .case-cols p:first-child::first-letter { font-weight: 800; font-size: 44px; }
+/* ── письмо v2: главные мысли крупно, материалы списком ── */
+.letter2 { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(28px, 5vw, 84px); align-items: start; }
+@media (max-width: 860px) { .letter2 { grid-template-columns: 1fr; } }
+.l2-lead { font-weight: 800; font-size: clamp(28px, 3.3vw, 48px); line-height: 1.08; letter-spacing: -.02em; text-wrap: balance; max-width: 20ch; }
+.l2-lead em { font-style: normal; color: var(--gold); display: block; margin-top: .18em; }
+.l2-note { margin-top: 26px; font-size: clamp(16px, 1.3vw, 19px); line-height: 1.62; color: var(--dust); max-width: 50ch; }
+.l2-note b { color: var(--bone); font-weight: 600; }
+.letter2 .sign { margin-top: 34px; max-width: 22rem; }
+.l2-k { font-family: var(--mono); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--mute); margin-bottom: 14px; }
+.l2-list { list-style: none; border-top: 1px solid var(--line); }
+.l2-list li { display: flex; gap: 18px; align-items: baseline; padding: 18px 0; border-bottom: 1px solid var(--line); font-weight: 700; font-size: clamp(17px, 1.55vw, 22px); line-height: 1.3; }
+.l2-list li span { font-family: var(--mono); font-size: 12px; font-weight: 400; letter-spacing: .14em; color: var(--gold); flex-shrink: 0; }
+.l2-more { margin-top: clamp(30px, 5vh, 48px); font-family: var(--mono); font-size: 12.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--dust); }
+/* hero — реальное фото: своё затемнение уже в кадре, CSS-градиент мягче */
+.hero-frame img { filter: none !important; object-position: 66% 40% !important; }
+.hero-frame::after { background: linear-gradient(90deg, rgba(8,8,10,.55) 0%, rgba(8,8,10,.15) 40%, rgba(8,8,10,0) 60%) !important; }
 </style>
 </head>
 <body class="v-client">
@@ -363,7 +379,7 @@ dialog.player video { width: 100%; max-height: 88vh; display: block; background:
 
 <main id="top">
   <section class="hero">
-    <div class="hero-frame"><img src="media/hero_A1.jpg" alt="Alexander Rakipov в монтажной" fetchpriority="high"></div>
+    <div class="hero-frame"><img src="media/hero_real.jpg" alt="Alexander Rakipov в монтажной" fetchpriority="high"></div>
     <div class="grain"></div>
     <div class="hero-scan"></div>
     <div class="hero-body">
@@ -377,19 +393,29 @@ dialog.player video { width: 100%; max-height: 88vh; display: block; background:
     </div>
     <div class="hero-foot">
       <div>TC <b>00:00:00:00</b> &nbsp;·&nbsp; 2024–2026 &nbsp;·&nbsp; <b>100+</b> роликов</div>
-      <div class="cap">AI-кадр · лицо держится по трём фото</div>
+      <div class="cap">Монтажная · Минск</div>
     </div>
   </section>
 
   <section class="sec p-only" id="letter">
     <div class="sec-head"><span class="sec-k">TC 00:15 · Павлу</span><h2 class="sec-t">Зачем эта страница</h2></div>
-    <div class="letter">
-      <div class="letter-t">
-        <p>Павел, ты строишь клиентам систему продаж. Дальше этой системе нужны <em>материалы</em>: ролик, который объясняет продукт, отзывы клиентов, презентация, после которой менеджеру есть что отправить, реклама, которая приводит заявки.</p>
-        <p>Сейчас твои клиенты собирают это у разных подрядчиков, а координация ложится на тебя. Эту часть я могу взять на себя. Ниже то, что я делаю, и как это выглядит на деле. Начну с твоего же Instagram.</p>
+    <div class="letter2">
+      <div>
+        <p class="l2-lead">Павел, ты строишь клиентам систему продаж. <em>Я даю ей материалы, которые продают.</em></p>
+        <p class="l2-note">Сейчас клиенты собирают их у разных подрядчиков, а координация ложится на тебя. <b>Эту часть беру на себя: один контакт, режиссура моя, продакшн — команда.</b></p>
+        <div class="sign"><b>Alexander Rakipov</b>режиссёр · AI-видео и продакшн<br>t.me/aliaksrakipov</div>
       </div>
-      <div class="sign"><b>Alexander Rakipov</b>режиссёр · AI-видео и продакшн<br>t.me/aliaksrakipov</div>
+      <div>
+        <div class="l2-k">Что нужно системе продаж</div>
+        <ol class="l2-list">
+          <li><span>01</span>Ролик, который объясняет продукт</li>
+          <li><span>02</span>Отзывы клиентов, которым верят</li>
+          <li><span>03</span>Презентация, которую менеджер отправляет после звонка</li>
+          <li><span>04</span>Реклама, которая приводит заявки</li>
+        </ol>
+      </div>
     </div>
+    <p class="l2-more">Ниже — как это выглядит на деле. Начну с твоего же Instagram.</p>
   </section>
 
   <section class="sec" id="services">
