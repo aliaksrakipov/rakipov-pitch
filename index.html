@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Alexander Rakipov — материалы для отделов продаж</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black:  #08080a;
+  --plate:  #0e0e11;
+  --raise:  #131316;
+  --line:   #23231f;
+  --bone:   #efece5;
+  --dust:   #b8ac99;
+  --mute:   #6d6459;
+  --rec:    #d64f3a;
+  --gold:   #c9ab6a;
+
+  --cond: "Fira Sans Extra Condensed", "Avenir Next Condensed", "Arial Narrow", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --sans: "Onest", system-ui, -apple-system, sans-serif;
+  --serif: "Cormorant Garamond", "New York", Georgia, serif;
+
+  --gut: clamp(16px, 5vw, 72px);
+  --band: calc(100vw / 2.39);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black); color: var(--bone);
+  font-family: var(--sans); line-height: 1.6;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+.nw { white-space: nowrap; }
+
+.grain {
+  position: absolute; inset: -50%; pointer-events: none; opacity: .11; z-index: 4;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3'/%3E%3C/filter%3E%3Crect width='150' height='150' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: shift 700ms steps(3) infinite;
+}
+@keyframes shift { 0% { transform: translate(0,0); } 33% { transform: translate(-2%,1%); } 66% { transform: translate(1%,-2%); } }
+
+/* ── шапка ─────────────────────────────────────────────── */
+.bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 14px var(--gut);
+  font-family: var(--mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+  background: linear-gradient(var(--black) 45%, transparent);
+}
+.bar a { color: var(--dust); text-decoration: none; transition: color .2s; }
+.bar a:hover, .bar a:focus-visible { color: var(--bone); }
+.bar-name { color: var(--bone) !important; }
+.bar-cta { border: 1px solid var(--line); padding: 7px 14px; border-radius: 100px; }
+.bar-cta:hover { border-color: var(--mute); }
+
+/* ── HERO: кадр 2.39:1 в чёрных полосах ────────────────── */
+.hero { position: relative; height: 100svh; min-height: 560px; max-height: 1100px; overflow: hidden; background: #000; }
+.hero-frame {
+  position: absolute; left: 0; right: 0; top: 50%; translate: 0 -50%;
+  height: var(--band); min-height: min(42vh, 480px); overflow: hidden;
+}
+.hero-frame img { width: 100%; height: 100%; object-fit: cover; object-position: 70% 30%; filter: saturate(.85) brightness(.92); }
+.hero-frame::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(8,8,10,.85) 0%, rgba(8,8,10,.35) 38%, rgba(8,8,10,0) 58%);
+}
+.hero-scan {
+  position: absolute; inset: 0; z-index: 3; opacity: .4; pointer-events: none;
+  background: repeating-linear-gradient(to bottom, rgba(255,255,255,.03) 0 1px, transparent 1px 3px);
+}
+.hero-body {
+  position: absolute; inset: 0; z-index: 6;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 0 var(--gut);
+}
+.hero-h {
+  font-family: var(--cond); font-weight: 600; text-transform: uppercase;
+  font-size: clamp(34px, 4.9vw, 84px); line-height: .94; letter-spacing: .005em;
+  max-width: 21ch; text-wrap: balance;
+  animation: rise 1.1s cubic-bezier(.16,.84,.32,1) both;
+}
+.hero-h em { font-style: normal; display: block; color: #a39885; }
+.hero-tag {
+  font-family: var(--mono); font-size: clamp(10px, 1.1vw, 13px);
+  letter-spacing: .26em; text-transform: uppercase; color: var(--dust);
+  margin-top: clamp(20px, 3.4vh, 36px); max-width: 64rem;
+  animation: rise 1.1s .18s cubic-bezier(.16,.84,.32,1) both;
+}
+.hero-sub {
+  font-size: clamp(15px, 1.3vw, 18px); color: var(--bone); opacity: .85;
+  margin-top: 12px; max-width: 46ch;
+  animation: rise 1.1s .26s cubic-bezier(.16,.84,.32,1) both;
+}
+.hero-act { display: flex; gap: 10px; flex-wrap: wrap; margin-top: clamp(22px, 3.6vh, 38px); animation: rise 1.1s .34s cubic-bezier(.16,.84,.32,1) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--mono); font-size: 11.5px; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--bone); text-decoration: none; border: 1px solid var(--line);
+  padding: 13px 22px; border-radius: 100px; background: rgba(8,8,10,.6);
+  transition: border-color .25s, background .25s;
+}
+.btn:hover, .btn:focus-visible { border-color: var(--mute); background: var(--raise); }
+.btn.is-primary { background: var(--bone); color: var(--black); border-color: var(--bone); }
+.btn.is-primary:hover { background: #fff; }
+.btn i { width: 7px; height: 7px; border-radius: 50%; background: var(--rec); animation: blink 2.4s steps(1) infinite; }
+@keyframes blink { 0%,60% { opacity: 1; } 61%,100% { opacity: .15; } }
+
+.hero-foot {
+  position: absolute; z-index: 7; left: var(--gut); right: var(--gut); bottom: 22px;
+  display: flex; justify-content: space-between; align-items: flex-end; gap: 20px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: .1em; color: var(--mute);
+  font-variant-numeric: tabular-nums; text-transform: uppercase;
+}
+.hero-foot b { color: var(--bone); font-weight: 400; }
+@media (max-width: 640px) {
+  .hero-foot .cap { display: none; }
+  /* телефон: текст на чёрном сверху, кадр под ним — лицо не перекрываем */
+  .hero { height: auto; min-height: 0; max-height: none; display: flex; flex-direction: column; }
+  .hero-body { position: relative; inset: auto; padding: 34px var(--gut) 30px; }
+  .hero-frame { position: relative; top: auto; translate: none; height: 78vw; min-height: 0; margin-top: 60px; }
+  .hero-frame img { object-position: 80% 30%; }
+  .hero-frame::after { background: linear-gradient(180deg, rgba(8,8,10,.7), rgba(8,8,10,0) 30%); }
+  .hero-foot { position: relative; left: auto; right: auto; bottom: auto; padding: 16px var(--gut) 28px; }
+}
+
+/* ── секции ────────────────────────────────────────────── */
+.sec { padding: clamp(72px, 11vh, 140px) var(--gut); position: relative; }
+.sec-head {
+  display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap;
+  padding-bottom: 18px; margin-bottom: clamp(32px, 5vh, 54px);
+  border-bottom: 1px solid var(--line);
+}
+.sec-k { font-family: var(--mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--mute); }
+.sec-t {
+  font-family: var(--cond); text-transform: uppercase; font-weight: 600;
+  font-size: clamp(28px, 4.4vw, 56px); line-height: .98; letter-spacing: .01em; margin-right: auto;
+}
+.sec-note { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; color: var(--mute); text-transform: uppercase; }
+
+/* ── КЕЙС ──────────────────────────────────────────────── */
+.case { background: var(--plate); border-block: 1px solid var(--line); overflow: hidden; }
+.case-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(30px, 5vw, 80px); align-items: start; }
+@media (max-width: 900px) { .case-grid { grid-template-columns: 1fr; } }
+.case-rail {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+  color: #8c7f5f; display: flex; gap: 18px; flex-wrap: wrap;
+  padding-bottom: 14px; border-bottom: 1px solid var(--line); margin-bottom: 26px;
+}
+.case-h {
+  font-family: var(--serif); font-weight: 500; font-size: clamp(36px, 5vw, 66px);
+  line-height: 1; letter-spacing: -.015em; text-wrap: balance; margin-bottom: 22px;
+}
+.case-h em { font-style: italic; color: var(--gold); }
+.case-dek { font-size: clamp(16px, 1.35vw, 18.5px); color: var(--dust); max-width: 46ch; line-height: 1.62; }
+.case-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 34px; }
+@media (max-width: 620px) { .case-cols { grid-template-columns: 1fr; } }
+.case-cols p { font-size: 15px; line-height: 1.7; color: #9a978f; }
+.case-cols p:first-child::first-letter {
+  font-family: var(--serif); float: left; font-size: 50px; line-height: .8;
+  padding: 4px 8px 0 0; color: var(--gold);
+}
+.case-cols b { color: var(--bone); font-weight: 500; }
+
+.figs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.fig { background: var(--black); padding: 24px 20px; }
+.fig-n { font-family: var(--cond); font-weight: 600; font-size: clamp(36px, 4.4vw, 58px); line-height: 1; font-variant-numeric: tabular-nums; }
+.fig-k { font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--mute); margin-top: 10px; line-height: 1.55; }
+.quote {
+  margin-top: 18px; padding: 22px 20px; border: 1px solid var(--line);
+  font-family: var(--serif); font-style: italic; font-size: clamp(20px, 1.8vw, 25px); line-height: 1.3; color: var(--bone);
+}
+.quote small { display: block; margin-top: 12px; font-family: var(--mono); font-style: normal; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--mute); }
+
+/* ряд вертикалей 9:16 */
+.strip-h {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 14px;
+  margin: clamp(48px, 7vh, 72px) 0 18px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--mute);
+}
+.strip-h b { color: var(--bone); font-weight: 400; }
+.reels { display: grid; grid-template-columns: repeat(5, 1fr); gap: clamp(10px, 1.4vw, 20px); }
+.reel { text-decoration: none; color: inherit; display: block; }
+.reel-frame { position: relative; aspect-ratio: 9/16; overflow: hidden; border: 1px solid var(--line); background: #000; }
+.reel-frame img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2,.7,.3,1), filter .5s; filter: brightness(.9); }
+.reel:hover .reel-frame img, .reel:focus-visible .reel-frame img { transform: scale(1.04); filter: brightness(1); }
+.reel-play {
+  position: absolute; left: 12px; bottom: 12px; z-index: 2;
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 10px; letter-spacing: .14em; color: var(--bone);
+  background: rgba(8,8,10,.78); border: 1px solid rgba(239,236,229,.22); padding: 6px 10px 6px 9px; border-radius: 100px;
+}
+.reel-play::before { content: ""; border-left: 8px solid var(--bone); border-block: 5px solid transparent; }
+.reel-t { font-family: var(--cond); text-transform: uppercase; font-weight: 600; font-size: clamp(16px, 1.45vw, 21px); letter-spacing: .02em; margin-top: 12px; line-height: 1.05; }
+.reel-s { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; color: var(--dust); margin-top: 6px; text-transform: uppercase; line-height: 1.5; }
+.tag-ai { color: var(--gold); }
+
+.slides { display: grid; grid-template-columns: repeat(6, 1fr); gap: clamp(8px, 1vw, 14px); }
+.slides img { aspect-ratio: 3/4; object-fit: cover; border: 1px solid var(--line); }
+
+@media (max-width: 860px) {
+  .reels, .slides {
+    display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px;
+    margin-inline: calc(var(--gut) * -1); padding-inline: var(--gut); scroll-padding-inline: var(--gut); scrollbar-width: none;
+  }
+  .strip-h span:last-child { display: none; }
+  .reels::-webkit-scrollbar, .slides::-webkit-scrollbar { display: none; }
+  .reel { flex: 0 0 44vw; scroll-snap-align: start; }
+  .slides img { flex: 0 0 40vw; width: 40vw; scroll-snap-align: start; }
+}
+
+/* ── версии: Павел (p-only) / клиенты (c-only) ─────────── */
+.v-pavel .c-only, .v-client .p-only { display: none !important; }
+
+/* ── письмо Павлу ──────────────────────────────────────── */
+.letter { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 16rem); gap: clamp(28px, 5vw, 80px); align-items: end; }
+@media (max-width: 860px) { .letter { grid-template-columns: 1fr; } }
+.letter-t { font-family: var(--serif); font-size: clamp(22px, 2.4vw, 33px); line-height: 1.32; text-wrap: pretty; max-width: 36ch; }
+.letter-t em { font-style: italic; color: var(--gold); }
+.letter-t p + p { margin-top: .7em; }
+.sign { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--mute); border-top: 1px solid var(--line); padding-top: 14px; line-height: 1.8; }
+.sign b { color: var(--bone); font-weight: 400; display: block; }
+
+/* ── услуги: боль → что делаем → срок ──────────────────── */
+.svc { border-top: 1px solid var(--line); }
+.svc-row {
+  display: grid; grid-template-columns: 2.6rem minmax(0, .9fr) minmax(0, 1.3fr) 10ch;
+  gap: clamp(14px, 3vw, 40px); align-items: baseline;
+  padding: clamp(20px, 3vh, 30px) 0; border-bottom: 1px solid var(--line);
+}
+.svc-n { font-family: var(--mono); font-size: 11px; color: var(--mute); }
+.svc-p { font-family: var(--serif); font-style: italic; font-size: clamp(19px, 1.8vw, 25px); line-height: 1.2; color: var(--dust); }
+.svc-t { font-family: var(--cond); text-transform: uppercase; font-weight: 600; font-size: clamp(19px, 2vw, 27px); letter-spacing: .015em; line-height: 1.05; }
+.svc-d { font-size: 14.5px; color: #9a978f; line-height: 1.6; margin-top: 8px; }
+.svc-w { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; color: var(--bone); text-transform: uppercase; text-align: right; }
+@media (max-width: 860px) {
+  .svc-row { grid-template-columns: 2.2rem 1fr; row-gap: 10px; }
+  .svc-row > :nth-child(n+3) { grid-column: 2; } .svc-w { text-align: left; }
+}
+
+/* ── сетки работ 2.39:1 ────────────────────────────────── */
+.sec-lead { font-size: clamp(16px, 1.35vw, 18.5px); color: var(--dust); max-width: 62ch; line-height: 1.62; margin: -12px 0 clamp(28px, 4vh, 44px); }
+.works { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(16px, 2.2vw, 30px); }
+.works.is-3 { grid-template-columns: repeat(3, 1fr); }
+.works.is-4 { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 1000px) { .works.is-3, .works.is-4 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .works, .works.is-3, .works.is-4 { grid-template-columns: 1fr; } }
+.work { text-decoration: none; color: inherit; display: block; }
+.work-frame { position: relative; aspect-ratio: 2.39/1; overflow: hidden; background: #000; border: 1px solid var(--line); }
+.work-frame .reel-play { left: auto; right: 12px; }
+.work-frame img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.85) brightness(.86); transition: transform 1.2s cubic-bezier(.2,.7,.3,1), filter .5s; }
+.work:hover .work-frame img, .work:focus-visible .work-frame img { transform: scale(1.04); filter: none; }
+.work-meta { display: flex; justify-content: space-between; gap: 14px; margin-top: 12px; align-items: baseline; }
+.work-t { font-family: var(--cond); text-transform: uppercase; font-size: clamp(17px, 1.7vw, 23px); font-weight: 600; letter-spacing: .02em; line-height: 1.05; }
+.work-d { font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; color: var(--mute); text-transform: uppercase; text-align: right; flex-shrink: 0; }
+.work-s { font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; color: var(--dust); margin-top: 5px; text-transform: uppercase; line-height: 1.55; }
+.feature { margin-bottom: clamp(16px, 2.2vw, 30px); }
+.feature .work-t { font-size: clamp(22px, 2.6vw, 36px); }
+.credit { margin-top: 24px; font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--mute); }
+.names { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--dust); line-height: 2.1; }
+.names i { color: var(--mute); font-style: normal; margin: 0 .55em; }
+
+/* ── заявки ────────────────────────────────────────────── */
+.leads { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 27rem); gap: clamp(30px, 5vw, 80px); align-items: start; }
+@media (max-width: 900px) { .leads { grid-template-columns: 1fr; } }
+.leads .figs { grid-template-columns: repeat(3, 1fr); margin-top: 30px; }
+@media (max-width: 520px) { .leads .figs { grid-template-columns: 1fr 1fr; } .leads .fig:last-child { grid-column: span 2; } }
+.lead-t { font-family: var(--serif); font-size: clamp(26px, 3vw, 40px); line-height: 1.12; text-wrap: balance; }
+.lead-t em { font-style: italic; color: var(--gold); }
+.lead-d { margin-top: 16px; color: #9a978f; font-size: 15.5px; line-height: 1.68; max-width: 54ch; }
+.note { margin-top: 18px; font-size: 13.5px; color: var(--mute); max-width: 58ch; line-height: 1.6; }
+.ads { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.ads a { display: block; position: relative; }
+.ads img { aspect-ratio: 9/16; object-fit: cover; border: 1px solid var(--line); width: 100%; }
+
+/* ── как работаем ─────────────────────────────────────── */
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+@media (max-width: 860px) { .steps { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .steps { grid-template-columns: 1fr; } }
+.step { background: var(--black); padding: 24px 20px 26px; }
+.step-n { font-family: var(--mono); font-size: 11px; color: var(--mute); letter-spacing: .14em; }
+.step-t { font-family: var(--cond); text-transform: uppercase; font-weight: 600; font-size: clamp(20px, 2vw, 26px); margin: 14px 0 8px; line-height: 1.05; }
+.step-d { font-size: 14.5px; color: #9a978f; line-height: 1.6; }
+.who { display: grid; grid-template-columns: minmax(0, 14rem) 1fr; gap: clamp(24px, 4vw, 56px); align-items: center; margin-top: clamp(40px, 6vh, 64px); }
+@media (max-width: 640px) { .who { grid-template-columns: 1fr; } .who img { max-width: 14rem; } }
+.who img { aspect-ratio: 4/5; object-fit: cover; border: 1px solid var(--line); filter: grayscale(.25) contrast(1.05); }
+.who-t { font-family: var(--serif); font-size: clamp(22px, 2.4vw, 32px); line-height: 1.3; max-width: 38ch; }
+.who-t em { font-style: italic; color: var(--gold); }
+.who-d { margin-top: 14px; color: #9a978f; font-size: 15px; line-height: 1.65; max-width: 62ch; }
+
+/* ── форматы ───────────────────────────────────────────── */
+.fmts { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 1.6vw, 22px); }
+@media (max-width: 860px) { .fmts { grid-template-columns: 1fr; } }
+.fmt { border: 1px solid var(--line); padding: 26px 22px 28px; background: var(--plate); }
+.fmt-k { font-family: var(--mono); font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--mute); }
+.fmt-t { font-family: var(--cond); text-transform: uppercase; font-weight: 600; font-size: clamp(22px, 2.2vw, 30px); line-height: 1.02; margin: 16px 0 12px; }
+.fmt-d { font-size: 14.5px; color: #9a978f; line-height: 1.6; }
+
+/* ── финал ─────────────────────────────────────────────── */
+.end { border-top: 1px solid var(--line); }
+.end-h { font-family: var(--cond); text-transform: uppercase; font-weight: 600; font-size: clamp(36px, 6.6vw, 100px); line-height: .92; letter-spacing: .01em; max-width: 18ch; }
+.end-h em { font-style: normal; color: #a39885; display: block; }
+.end-sub { color: var(--dust); font-size: clamp(15px, 1.5vw, 18px); max-width: 54ch; margin: 24px 0 34px; line-height: 1.6; }
+
+/* ── плеер ─────────────────────────────────────────────── */
+dialog.player { border: 0; padding: 0; background: #000; width: min(92vw, 1400px); max-width: none; margin: auto; overflow: visible; }
+dialog.player.is-v { width: min(92vw, 46vh); }
+dialog.player::backdrop { background: rgba(0,0,0,.9); }
+dialog.player video { width: 100%; max-height: 88vh; display: block; background: #000; }
+.player-x { position: absolute; top: -40px; right: 0; font-family: var(--mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--bone); background: none; border: 1px solid var(--line); border-radius: 100px; padding: 7px 12px; cursor: pointer; }
+.player-msg { display: none; color: var(--dust); font-family: var(--mono); font-size: 12px; letter-spacing: .1em; padding: 60px 24px; text-align: center; text-transform: uppercase; }
+
+.foot {
+  padding: 26px var(--gut) 34px; border-top: 1px solid var(--line);
+  display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--mute);
+}
+:focus-visible { outline: 2px solid var(--dust); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+/* читаемость служебного текста (аудитория 40+, телефон) */
+.work-s, .reel-s, .fig-k, .credit { font-size: 11.5px; }
+.work-d, .sec-note, .sec-k, .strip-h, .sign, .names { font-size: 12px; }
+@media (max-width: 640px) {
+  .work-s, .reel-s, .fig-k, .credit, .work-d, .sec-note, .sec-k, .strip-h, .names { font-size: 12.5px; letter-spacing: .08em; }
+  .svc-d, .step-d, .fmt-d, .case-cols p { font-size: 15.5px; }
+}
+/* ── Типографика v2: только Onest (решение Alex, 2026-11-09) ── */
+:root { --cond: "Onest", system-ui, sans-serif; --serif: "Onest", system-ui, sans-serif; }
+.hero-h, .sec-t, .work-t, .reel-t, .svc-t, .step-t, .fmt-t, .end-h, .fig-n { font-weight: 800; letter-spacing: -.015em; }
+.hero-h { font-size: clamp(30px, 4.1vw, 70px); line-height: 1; }
+.sec-t { font-size: clamp(24px, 3.3vw, 44px); line-height: 1.02; }
+.end-h { font-size: clamp(32px, 5.2vw, 82px); line-height: .98; }
+.work-t, .reel-t { font-size: clamp(15px, 1.35vw, 19px); }
+.feature .work-t { font-size: clamp(19px, 2.1vw, 28px); }
+.svc-t { font-size: clamp(17px, 1.65vw, 22px); }
+.step-t, .fmt-t { font-size: clamp(18px, 1.7vw, 23px); }
+.fig-n { font-size: clamp(30px, 3.5vw, 48px); }
+.case-h, .letter-t, .svc-p, .quote, .lead-t, .who-t { font-style: normal; letter-spacing: -.015em; }
+.case-h em, .letter-t em, .lead-t em, .who-t em, .quote em { font-style: normal; }
+.case-h { font-size: clamp(30px, 3.8vw, 52px); line-height: 1.05; font-weight: 700; }
+.letter-t { font-size: clamp(19px, 2vw, 27px); line-height: 1.42; font-weight: 500; }
+.svc-p { font-size: clamp(16px, 1.45vw, 20px); font-weight: 500; line-height: 1.3; }
+.quote { font-size: clamp(17px, 1.5vw, 21px); font-weight: 500; line-height: 1.4; }
+.lead-t { font-size: clamp(22px, 2.5vw, 34px); font-weight: 700; line-height: 1.12; }
+.who-t { font-size: clamp(19px, 2vw, 27px); font-weight: 500; line-height: 1.38; }
+.case-cols p:first-child::first-letter { font-weight: 800; font-size: 44px; }
+</style>
+</head>
+<body class="v-client">
+
+<header class="bar">
+  <a class="bar-name" href="#top">Alexander Rakipov</a>
+  <a class="bar-cta" href="https://t.me/aliaksrakipov">Telegram</a>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="hero-frame"><img src="media/hero_A1.jpg" alt="Alexander Rakipov в монтажной" fetchpriority="high"></div>
+    <div class="grain"></div>
+    <div class="hero-scan"></div>
+    <div class="hero-body">
+      <h1 class="hero-h">Отдел продаж выстроен.<em>Теперь ему нужны материалы, которые продают</em></h1>
+      <p class="hero-tag"><span class="nw">Видео</span> · <span class="nw">контент для соцсетей</span> · <span class="nw">реклама с заявками</span> · <span class="nw">презентации и сайты</span></p>
+      <p class="hero-sub">Я режиссирую, команда ведёт продакшн. Вы общаетесь с одним человеком.</p>
+      <div class="hero-act">
+        <a class="btn" href="#cases"><i></i>Смотреть работы</a>
+        <a class="btn" href="https://t.me/aliaksrakipov">Написать в Telegram</a>
+      </div>
+    </div>
+    <div class="hero-foot">
+      <div>TC <b>00:00:00:00</b> &nbsp;·&nbsp; 2024–2026 &nbsp;·&nbsp; <b>100+</b> роликов</div>
+      <div class="cap">AI-кадр · лицо держится по трём фото</div>
+    </div>
+  </section>
+
+  <section class="sec p-only" id="letter">
+    <div class="sec-head"><span class="sec-k">TC 00:15 · Павлу</span><h2 class="sec-t">Зачем эта страница</h2></div>
+    <div class="letter">
+      <div class="letter-t">
+        <p>Павел, ты строишь клиентам систему продаж. Дальше этой системе нужны <em>материалы</em>: ролик, который объясняет продукт, отзывы клиентов, презентация, после которой менеджеру есть что отправить, реклама, которая приводит заявки.</p>
+        <p>Сейчас твои клиенты собирают это у разных подрядчиков, а координация ложится на тебя. Эту часть я могу взять на себя. Ниже то, что я делаю, и как это выглядит на деле. Начну с твоего же Instagram.</p>
+      </div>
+      <div class="sign"><b>Alexander Rakipov</b>режиссёр · AI-видео и продакшн<br>t.me/aliaksrakipov</div>
+    </div>
+  </section>
+
+  <section class="sec" id="services">
+    <div class="sec-head"><span class="sec-k">TC 00:30</span><h2 class="sec-t">Где продажи упираются в материалы</h2><span class="sec-note">сроки типовые</span></div>
+    <div class="svc">
+      <div class="svc-row"><span class="svc-n">01</span><span class="svc-p">«Клиент не верит на слово»</span><div><div class="svc-t">Кейс-ролики и отзывы</div><div class="svc-d">Запись созвона или Zoom-отзыв превращаем в ролик, который менеджер отправляет после встречи. Ролики о продукте: со съёмкой или на AI, если снимать нечего.</div></div><span class="svc-w">1–2 недели</span></div>
+      <div class="svc-row"><span class="svc-n">02</span><span class="svc-p">«Собственник — эксперт, но его не видно»</span><div><div class="svc-t">Контент для личного бренда</div><div class="svc-d">Рилсы, карусели и обложки в одном стиле. Пакет на месяц — как у Inkrementa ниже.</div></div><span class="svc-w">≈ неделя</span></div>
+      <div class="svc-row"><span class="svc-n">03</span><span class="svc-p">«Менеджеру нечего отправить после звонка»</span><div><div class="svc-t">Презентации, КП и сайты</div><div class="svc-d">Продающая презентация, КП, лендинг. Веб-презентация, которую каждый менеджер отправляет по своей ссылке, с калькулятором внутри.</div></div><span class="svc-w">3–10 дней</span></div>
+      <div class="svc-row"><span class="svc-n">04</span><span class="svc-p">«Нужны заявки, а не охваты»</span><div><div class="svc-t">Реклама с заявками</div><div class="svc-d">Креативы и лид-форма. Заявка сразу падает менеджеру в Telegram или CRM, отчёт — по цене заявки.</div></div><span class="svc-w">запуск ≈ 5 дней</span></div>
+    </div>
+  </section>
+
+  <section class="sec case" id="cases">
+    <div class="sec-head">
+      <span class="sec-k">TC 01:00 · Кейс 01</span>
+      <h2 class="sec-t">Inkrementa</h2>
+      <span class="sec-note">Ноябрь 2026 · 9 дней</span>
+    </div>
+
+    <div class="case-grid">
+      <div>
+        <div class="case-rail"><span>Консалтинг отделов продаж B2B</span><span>Instagram*</span></div>
+        <h3 class="case-h">Эксперт по продажам, которого <em>видно</em></h3>
+        <p class="case-dek">Павел Езерский выстраивает отделы продаж для собственников B2B. Нужен был Instagram, который говорит с собственником на его языке: боль, цифры клиентов, понятный процесс. Без инфобизнеса.</p>
+        <div class="case-cols">
+          <p>Промо-ролик в двух версиях. Первая собрана на живых фото и Zoom-записях. Во второй, <b>AI-версии</b>, Павел ходит и объясняет в кадре без единого съёмочного дня, а лицо держится от кадра к кадру.</p>
+          <p>Рилсы из видеоотзывов клиентов, <b>TenderStart</b> и группы компаний <b>КСК</b>. Карусели с кейсами и процессом работы: 36 слайдов в одном стиле, в фирменных цветах Inkrementa.</p>
+        </div>
+      </div>
+      <aside>
+        <div class="figs">
+          <div class="fig"><div class="fig-n">5</div><div class="fig-k">роликов<br>для Instagram</div></div>
+          <div class="fig"><div class="fig-n">36</div><div class="fig-k">слайдов<br>в каруселях</div></div>
+          <div class="fig"><div class="fig-n">0</div><div class="fig-k">съёмочных дней<br>в AI-версии</div></div>
+          <div class="fig"><div class="fig-n">9</div><div class="fig-k">дней от брифа<br>до пакета</div></div>
+        </div>
+        <div class="quote">«Стакан наполнен полностью, ещё с шапочкой»<small>Алексей, собственник TenderStart · из видеоотзыва</small></div>
+      </aside>
+    </div>
+
+    <div class="strip-h"><span><b>Ролики</b> · 9:16</span><span>нажмите, чтобы смотреть</span></div>
+    <div class="reels">
+      <a class="reel" href="#" data-video="media/v/ink_promo.mp4" data-v="1"><div class="reel-frame"><img src="media/ink_promo.jpg" alt="Промо-ролик Inkrementa" loading="lazy"><span class="reel-play">0:28</span></div><div class="reel-t">Промо</div><div class="reel-s">живые фото · Zoom · VO</div></a>
+      <a class="reel" href="#" data-video="media/v/ink_ai.mp4" data-v="1"><div class="reel-frame"><img src="media/ink_ai.jpg" alt="AI-версия промо" loading="lazy"><span class="reel-play">0:28</span></div><div class="reel-t">Промо · <span class="tag-ai">AI</span></div><div class="reel-s">Павел в кадре без съёмки</div></a>
+      <a class="reel" href="#" data-video="media/v/ink_r4.mp4" data-v="1"><div class="reel-frame"><img src="media/ink_r4.jpg" alt="Отзыв TenderStart" loading="lazy"><span class="reel-play">0:30</span></div><div class="reel-t">Отзыв TenderStart</div><div class="reel-s">из записи созвона</div></a>
+      <a class="reel" href="#" data-video="media/v/ink_r7.mp4" data-v="1"><div class="reel-frame"><img src="media/ink_r7.jpg" alt="Как считается результат" loading="lazy"><span class="reel-play">0:22</span></div><div class="reel-t">Как считается результат</div><div class="reel-s">инфографика · VO</div></a>
+      <a class="reel" href="#" data-video="media/v/ink_r9.mp4" data-v="1"><div class="reel-frame"><img src="media/ink_r9.jpg" alt="Голос клиента КСК" loading="lazy"><span class="reel-play">0:32</span></div><div class="reel-t">Голос клиента · КСК</div><div class="reel-s">аудиограмма отзыва</div></a>
+    </div>
+
+    <div class="strip-h"><span><b>Карусели</b> · 6 постов · 36 слайдов</span><span>обложки</span></div>
+    <div class="slides">
+      <img src="media/car_03.jpg" alt="" loading="lazy">
+      <img src="media/car_06.jpg" alt="" loading="lazy">
+      <img src="media/car_05.jpg" alt="" loading="lazy">
+      <img src="media/car_08.jpg" alt="" loading="lazy">
+      <img src="media/car_10.jpg" alt="" loading="lazy">
+      <img src="media/car_05b.jpg" alt="" loading="lazy">
+    </div>
+  </section>
+
+  <section class="sec" id="b2b">
+    <div class="sec-head"><span class="sec-k">TC 02:00</span><h2 class="sec-t">Сложный продукт — понятным роликом</h2><span class="sec-note">B2B</span></div>
+    <p class="sec-lead">Страхование, технопарк, кибербезопасность, консалтинг: продукт, который не покажешь на пальцах. За 30–90 секунд ролик объясняет, что это и зачем клиенту, — и менеджер отправляет его до встречи.</p>
+    <div class="works">
+      <a class="work" href="#" data-video="media/v/b2b_belexim.mp4"><div class="work-frame"><img src="media/p_b2b_belexim.jpg" alt="Белэксимгарант" loading="lazy"><span class="reel-play">0:23</span></div><div class="work-meta"><span class="work-t">Белэксимгарант</span><span class="work-d">2026</span></div><div class="work-s">Страхование для бизнеса · продукт через выгоду для компании</div></a>
+      <a class="work" href="#" data-video="media/v/b2b_idea.mp4"><div class="work-frame"><img src="media/p_b2b_idea.jpg" alt="Технопарк «Идея»" loading="lazy"><span class="reel-play">0:27</span></div><div class="work-meta"><span class="work-t">Технопарк «Идея»</span><span class="work-d">2025 · Neuro Design</span></div><div class="work-s">Технопарк · инновации и производство</div></a>
+      <a class="work" href="#" data-video="media/v/b2b_bluesphere.mp4"><div class="work-frame"><img src="media/p_b2b_bluesphere.jpg" alt="BlueSphere" loading="lazy"><span class="reel-play">0:36</span></div><div class="work-meta"><span class="work-t">BlueSphere</span><span class="work-d">2025</span></div><div class="work-s">Кибербезопасность · тизер 16:9 и 4:5 под рекламу</div></a>
+      <a class="work" href="#" data-video="media/v/b2b_ab.mp4"><div class="work-frame"><img src="media/p_b2b_ab.jpg" alt="A.B. Consulting" loading="lazy"><span class="reel-play">1:35</span></div><div class="work-meta"><span class="work-t">A.B. Consulting</span><span class="work-d">2025 · Neuro Design</span></div><div class="work-s">Консалтинговая компания · промо на иврите</div></a>
+    </div>
+  </section>
+
+  <section class="sec case" id="bank">
+    <div class="sec-head"><span class="sec-k">TC 02:30</span><h2 class="sec-t">Беларусбанк</h2><span class="sec-note">ТВ и digital · 2026</span></div>
+    <p class="sec-lead">Крупнейший банк Беларуси. Ролики по жёсткому брендбуку: эфирные мастера для ТВ, вертикали для соцсетей, реальные интерфейсы приложения в кадре.</p>
+    <div class="works is-4">
+      <a class="work" href="#" data-video="media/v/bank_krok.mp4"><div class="work-frame"><img src="media/p_bank_krok.jpg" alt="Беларусбанк KROK" loading="lazy"><span class="reel-play">0:24</span></div><div class="work-meta"><span class="work-t">КРОК</span><span class="work-d">ТВ + 8 вертикалей</span></div><div class="work-s">Сервис в приложении банка</div></a>
+      <a class="work" href="#" data-video="media/v/bank_ned.mp4"><div class="work-frame"><img src="media/p_bank_ned.jpg" alt="Беларусбанк Недвижимость" loading="lazy"><span class="reel-play">0:20</span></div><div class="work-meta"><span class="work-t">Недвижимость</span><span class="work-d">ТВ</span></div><div class="work-s">Кредит на жильё</div></a>
+      <a class="work" href="#" data-video="media/v/bank_vkl.mp4"><div class="work-frame"><img src="media/p_bank_vkl.jpg" alt="Беларусбанк Вклады" loading="lazy"><span class="reel-play">0:19</span></div><div class="work-meta"><span class="work-t">Вклады</span><span class="work-d">ТВ + вертикаль</span></div><div class="work-s">Вклады в рублях</div></a>
+      <a class="work" href="#" data-video="media/v/bank_inf.mp4"><div class="work-frame"><img src="media/p_bank_inf.jpg" alt="Беларусбанк и Белкарт" loading="lazy"><span class="reel-play">0:13</span></div><div class="work-meta"><span class="work-t">Одна карта</span><span class="work-d">× Белкарт</span></div><div class="work-s">«Бесконечность решений»</div></a>
+    </div>
+  </section>
+
+  <section class="sec" id="dev">
+    <div class="sec-head"><span class="sec-k">TC 03:00</span><h2 class="sec-t">Девелоперы</h2><span class="sec-note">30+ роликов · ОАЭ · Саудия · Россия · Сербия</span></div>
+    <p class="sec-lead">Продаём то, чего ещё нет: дом на стадии котлована, квартал на рендере. Атмосфера, люди и жизнь в проекте — без съёмки, которую пока не на чем делать.</p>
+    <a class="work feature" href="#" data-video="media/v/dev_seamont.mp4"><div class="work-frame"><img src="media/p_dev_seamont.jpg" alt="Seamont" loading="lazy"><span class="reel-play">1:40</span></div><div class="work-meta"><span class="work-t">Seamont · Royal Development Holding</span><span class="work-d">Дубай · 4K</span></div></a>
+    <div class="works is-3">
+      <a class="work" href="#" data-video="media/v/dev_deyaar.mp4"><div class="work-frame"><img src="media/p_dev_deyaar.jpg" alt="" loading="lazy"><span class="reel-play">1:43</span></div><div class="work-meta"><span class="work-t">Deyaar · DWTN Residences</span><span class="work-d">Дубай</span></div></a>
+      <a class="work" href="#" data-video="media/v/dev_jlt.mp4"><div class="work-frame"><img src="media/p_dev_jlt.jpg" alt="" loading="lazy"><span class="reel-play">2:04</span></div><div class="work-meta"><span class="work-t">Hilton Residences JLT</span><span class="work-d">Дубай</span></div></a>
+      <a class="work" href="#" data-video="media/v/dev_seabreeze.mp4"><div class="work-frame"><img src="media/p_dev_seabreeze.jpg" alt="" loading="lazy"><span class="reel-play">0:41</span></div><div class="work-meta"><span class="work-t">SeaBreeze · Park Lane</span><span class="work-d">резиденции</span></div></a>
+      <a class="work" href="#" data-video="media/v/dev_mnevniki.mp4"><div class="work-frame"><img src="media/p_dev_mnevniki.jpg" alt="" loading="lazy"><span class="reel-play">1:01</span></div><div class="work-meta"><span class="work-t">Мневники</span><span class="work-d">Москва</span></div></a>
+      <a class="work" href="#" data-video="media/v/dev_barnaul.mp4"><div class="work-frame"><img src="media/p_dev_barnaul.jpg" alt="" loading="lazy"><span class="reel-play">2:27</span></div><div class="work-meta"><span class="work-t">Сахаров Парк</span><span class="work-d">Барнаул</span></div></a>
+      <a class="work" href="#" data-video="media/v/dev_dana.mp4"><div class="work-frame"><img src="media/p_dev_dana.jpg" alt="" loading="lazy"><span class="reel-play">1:06</span></div><div class="work-meta"><span class="work-t">DANA Holdings</span><span class="work-d">Сербия</span></div></a>
+    </div>
+    <div class="names">Deyaar<i>·</i>Hilton Residences<i>·</i>Royal Development Holding<i>·</i>SeaBreeze<i>·</i>Reportage Properties<i>·</i>Ardee Developments<i>·</i>DANA Holdings<i>·</i>MIFC Мальдивы<i>·</i>Мневники<i>·</i>ЖК «Нити»<i>·</i>Сахаров Парк<i>·</i>Горизонт Сочи<i>·</i>ХимТехнолоджи Девелопмент</div>
+    <div class="credit">2024–2025 · сделано в студии Neuro Design, Alexander Rakipov — режиссёр и AI-продакшн</div>
+  </section>
+
+  <section class="sec case" id="leads">
+    <div class="sec-head"><span class="sec-k">TC 03:30</span><h2 class="sec-t">Реклама с заявками</h2><span class="sec-note">Гармония Окон · Минск · B2C</span></div>
+    <div class="leads">
+      <div>
+        <h3 class="lead-t">Заявка — сразу у менеджера, <em>а не в таблице</em></h3>
+        <p class="lead-d">Окна и ремонт, реклама в Meta*. Сделали креативы, собрали лид-форму, настроили автоматизацию: заявка сразу приходит менеджеру в Telegram, без выгрузок и ручного переноса. Тот же бот принимал отклики на вакансию — для отдела продаж это ещё и найм.</p>
+        <div class="figs">
+          <div class="fig"><div class="fig-n">5</div><div class="fig-k">заявок в день<br>в среднем за дни показа</div></div>
+          <div class="fig"><div class="fig-n">$6,37</div><div class="fig-k">цена<br>заявки</div></div>
+          <div class="fig"><div class="fig-n">13</div><div class="fig-k">откликов на вакансию<br>за один день</div></div>
+        </div>
+        <p class="note">Это B2C. В B2B цена заявки будет другой — переносится система: креатив, форма, скорость ответа, отчёт.</p>
+      </div>
+      <div class="ads">
+        <a href="#" data-video="media/v/lead_1.mp4" data-v="1"><img src="media/p_lead_1.jpg" alt="Креатив Гармония Окон" loading="lazy"></a>
+        <a href="#" data-video="media/v/lead_2.mp4" data-v="1"><img src="media/p_lead_2.jpg" alt="Креатив Гармония Окон" loading="lazy"></a>
+        <a href="#" data-video="media/v/lead_3.mp4" data-v="1"><img src="media/p_lead_3.jpg" alt="Креатив Гармония Окон" loading="lazy"></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="pitch">
+    <div class="sec-head"><span class="sec-k">TC 04:00</span><h2 class="sec-t">Питч, выставка, кейс</h2></div>
+    <div class="works">
+      <a class="work" href="#" data-video="media/v/pitch_arsight.mp4"><div class="work-frame"><img src="media/p_pitch_arsight.jpg" alt="ARsightWay" loading="lazy"><span class="reel-play">1:38</span></div><div class="work-meta"><span class="work-t">ARsightWay</span><span class="work-d">RU + EN · 2026</span></div><div class="work-s">AR-навигация · ролик для инвестора и стенда, версия с титрами — для показа без звука</div></a>
+      <a class="work" href="#" data-video="media/v/case_lays.mp4"><div class="work-frame"><img src="media/p_case_lays.jpg" alt="Lay's MAXX" loading="lazy"><span class="reel-play">2:47</span></div><div class="work-meta"><span class="work-t">Lay's MAXX</span><span class="work-d">EN · 2026</span></div><div class="work-s">Кейс-ролик на фестиваль для агентства · так же упакуем результат вашего проекта для тендера, сайта или премии</div></a>
+    </div>
+  </section>
+
+  <section class="sec case" id="more">
+    <div class="sec-head"><span class="sec-k">TC 04:30</span><h2 class="sec-t">Ещё умеем</h2></div>
+    <div class="works is-4">
+      <div class="work"><div class="work-frame"><img src="media/p_more_ooh.jpg" alt="" loading="lazy"></div><div class="work-meta"><span class="work-t">Наружка 6×3</span></div><div class="work-s">Зелёная Гавань · печатный мастер 21 600 px</div></div>
+      <a class="work" href="#" data-video="media/v/more_erriad.mp4"><div class="work-frame"><img src="media/p_more_erriad.jpg" alt="" loading="lazy"><span class="reel-play">3:45</span></div><div class="work-meta"><span class="work-t">Мастерплан</span></div><div class="work-s">Инфографика по проекту · Neuro Design</div></a>
+      <div class="work"><div class="work-frame"><img src="media/p_more_aerial.jpg" alt="" loading="lazy"></div><div class="work-meta"><span class="work-t">Рендер в аэрофото</span></div><div class="work-s">Будущий посёлок на реальной местности</div></div>
+      <a class="work" href="#" data-video="media/v/more_stadium.mp4"><div class="work-frame"><img src="media/p_more_stadium.jpg" alt="" loading="lazy"><span class="reel-play">1:19</span></div><div class="work-meta"><span class="work-t">Инфраструктура</span></div><div class="work-s">Стадион King Salman · Neuro Design</div></a>
+    </div>
+  </section>
+
+  <section class="sec" id="how">
+    <div class="sec-head"><span class="sec-k">TC 05:00</span><h2 class="sec-t">Как работаем</h2><span class="sec-note">типовой проект — 1–2 недели</span></div>
+    <div class="steps">
+      <div class="step"><div class="step-n">01</div><div class="step-t">Концепция</div><div class="step-d">Одна мысль, которую зритель уносит, и драматургия. Утверждаете до того, как потрачен первый рубль на продакшн.</div></div>
+      <div class="step"><div class="step-n">02</div><div class="step-t">Аниматик</div><div class="step-d">Стоп-кадры и текст по таймингу. Ролик виден целиком ещё до генераций и монтажа.</div></div>
+      <div class="step"><div class="step-n">03</div><div class="step-t">Продакшн</div><div class="step-d">Генерации, монтаж, графика, звук. Команда работает параллельно, лицо и стиль держатся от кадра к кадру.</div></div>
+      <div class="step"><div class="step-n">04</div><div class="step-t">Правки</div><div class="step-d">Собираем пачкой и вносим в рамках утверждённой концепции. Финал — в нужных форматах: ТВ, вертикали, веб.</div></div>
+    </div>
+    <div class="who">
+      <img src="media/alex_real.jpg" alt="Alexander Rakipov" loading="lazy">
+      <div>
+        <p class="who-t">Вы общаетесь <em>с одним человеком</em>. Я режиссирую, за мной команда на продакшне.</p>
+        <p class="who-d">В монтаже с 2016 года, в AI-продакшне с 2022-го. 100+ роликов за год в студии Neuro Design. Живая съёмка — в Минске; в других городах работаем с вашим материалом (Zoom, телефон) или заменяем съёмку AI.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec case p-only" id="formats">
+    <div class="sec-head"><span class="sec-k">TC 05:30 · Павлу</span><h2 class="sec-t">Как можем работать</h2><span class="sec-note">без цен — обсудим на конкретном клиенте</span></div>
+    <div class="fmts">
+      <div class="fmt"><div class="fmt-k">Вариант 01</div><div class="fmt-t">Под брендом твоего агентства</div><div class="fmt-d">Клиент видит один бренд — твой. Я и команда — производство за кадром.</div></div>
+      <div class="fmt"><div class="fmt-k">Вариант 02</div><div class="fmt-t">Подряд по твоей рекомендации</div><div class="fmt-d">Ты знакомишь, дальше работаем с клиентом напрямую. Ты в курсе статуса на каждом этапе.</div></div>
+      <div class="fmt"><div class="fmt-k">Вариант 03</div><div class="fmt-t">Производственный отдел агентства</div><div class="fmt-d">Постоянная мощность под твоих клиентов: видео, контент, презентации, реклама.</div></div>
+    </div>
+  </section>
+
+  <section class="sec end p-only" id="pilot">
+    <h2 class="end-h">Возьмём одного твоего клиента<em>пилотом</em></h2>
+    <p class="end-sub">Выбери того, у кого горит: нет отзывов, слабая презентация или продукт, который никто не понимает с первого раза. Покажу концепцию до старта производства, дальше решаем вместе.</p>
+    <a class="btn is-primary" href="https://t.me/aliaksrakipov">Написать в Telegram</a>
+  </section>
+
+  <section class="sec end c-only" id="contact">
+    <h2 class="end-h">Обсудим<em>вашу задачу</em></h2>
+    <p class="end-sub">Расскажите, что продаёте и где буксует. Предложу формат и покажу концепцию до старта производства.</p>
+    <a class="btn is-primary" href="https://t.me/aliaksrakipov">Написать в Telegram</a>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>Alexander Rakipov · t.me/aliaksrakipov</span>
+  <span>* Meta признана экстремистской организацией и запрещена в РФ</span>
+</footer>
+
+<dialog class="player" aria-label="Видео">
+  <button class="player-x" type="button">Закрыть ✕</button>
+  <video controls playsinline preload="none"></video>
+  <p class="player-msg">Видео подключу при сборке страницы</p>
+</dialog>
+<script>
+const dlg = document.querySelector('dialog.player'), vid = dlg.querySelector('video'), msg = dlg.querySelector('.player-msg');
+document.addEventListener('click', e => {
+  const a = e.target.closest('[data-video]'); if (!a) return;
+  e.preventDefault();
+  dlg.classList.toggle('is-v', a.dataset.v === '1');
+  msg.style.display = 'none'; vid.style.display = '';
+  vid.src = a.dataset.video; dlg.showModal(); vid.play().catch(() => {});
+});
+vid.addEventListener('error', () => { vid.style.display = 'none'; msg.style.display = 'block'; });
+dlg.addEventListener('close', () => { vid.pause(); vid.removeAttribute('src'); vid.load(); });
+dlg.querySelector('.player-x').addEventListener('click', () => dlg.close());
+dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+</script>
+</body>
+</html>
